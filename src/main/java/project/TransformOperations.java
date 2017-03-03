@@ -4,13 +4,15 @@ package project;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Matrix {
+public class TransformOperations {
 
 
     public static String [][] getMatrix(){
 
-        try(BufferedReader br = new BufferedReader(new InputStreamReader(Matrix.class.getResourceAsStream("/file.txt")))) {
+        try(BufferedReader br = new BufferedReader(new InputStreamReader(TransformOperations.class.getResourceAsStream("/file.txt")))) {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
             String[] index = line.split("\\s+");
@@ -95,6 +97,37 @@ public class Matrix {
 
 
     }
+
+    public static Map<String,String[]> getRoute(String[][] matrix) {
+
+        int sum;
+        int pozition = 0;
+        String a = "" ;
+        Map <String,String[]> route = new HashMap<String,String[]>();
+
+        for(int i = 1; i<matrix.length; i++){
+            a = matrix[0][i];
+            sum = 0;
+            for(int j = 1 ; j<matrix.length; j++){
+                if(!matrix[i][j].equals("0") && !matrix[i][j].equals("1"))
+                    sum++;
+            }
+            pozition = 0;
+            String [] individualRoute = new String [sum];
+            for(int j = 1 ; j<matrix.length; j++){
+                if(!matrix[i][j].equals("0") && !matrix[i][j].equals("1")){
+                    individualRoute[pozition] = matrix[0][j];
+                    pozition++;
+                }
+            }
+            route.put(a,individualRoute);
+            // System.out.println("K("+a+")= "+Arrays.asList(parcursIndividual));
+        }
+
+        return route;
+
+    }
+
 
 //    public StringBuilder sb(){
 //        return this.sb;

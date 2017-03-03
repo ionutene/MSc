@@ -10,9 +10,9 @@ class Subset
     // Print all subsets of given set[]
 
     //private static final String FILENAME = "filename.txt";
-    static void printSubsets(String set[])
+    static void printSubsetsVerified(String set[])
     {
-        Solve r = new Solve();
+        //Solve r = new Solve();
         BufferedWriter bw = null;
         File file = new File("ParcursuriPosibile.txt");
 
@@ -46,9 +46,9 @@ class Subset
 
 
 
-            System.out.println("} = " + r.getSolve(primul) );
+            System.out.println("} = " + Subset.getSolveResult(primul) );
             content = "\n"+countOk + ". { " + content.trim() + " } = 1";
-            if(r.getSolve(primul) == 1) {
+            if(Subset.getSolveResult(primul) == 1) {
                 //System.out.println(" ");
                 //System.out.println("Adica " + content);
                 //System.out.println(" ");
@@ -94,7 +94,38 @@ class Subset
 
 
 
-    // Driver code
+    public static int getSolveResult(ArrayList first){
+
+
+/*        TransformOperations read = new TransformOperations();
+        TransformOperations mp = new TransformOperations();*/
+
+        String [][] matrix = TransformOperations.getMatrix();
+        Map <String,String[]> route = TransformOperations.getRoute(matrix);
+
+        ArrayList last = new ArrayList();
+        for(Object a : first){
+            //Arrays.toString(Object[] a)
+            for( String b :route.get(a) ){
+                last.add(b);
+            }
+        }
+
+
+        for(Object a : first){
+            //Arrays.toString(Object[] a)
+
+            if(last.contains(a)){
+
+                //System.out.println( a + "-------este continut ------" );
+                return 0;}
+
+        }
+
+
+        return 1;
+
+    }
 
 
 }

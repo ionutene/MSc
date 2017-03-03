@@ -72,7 +72,7 @@ class Subset
                     countOk++;
                     bw.append("\r\n");
                     //content = "";
-                    System.out.println("Scriere reusita in fisier");
+                    System.out.println("Successfully added to file");
 
                 } catch (IOException ioe) {
                     ioe.printStackTrace();
@@ -83,7 +83,7 @@ class Subset
                         if(bw!=null)
                             bw.close();
                     }catch(Exception ex){
-                        System.out.println("Am intampinat probleme in scrierea datelor in fisier"+ex);
+                        System.out.println("We found troubles in writing to file"+ex);
                     }
                 }
             }

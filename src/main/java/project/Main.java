@@ -5,10 +5,17 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        Matrix read = new Matrix();
+        //Matrix read = new Matrix();
         Route mp = new Route();
-        StringBuilder sb = read.sb();
-        String[][] matrix = read.getMatrix();
+       // StringBuilder sb = Matrix.sb();
+
+
+        // matrix gets OD data possibilities from file.txt with the static method getMatrix specific Class Matrix
+        String[][] matrix = Matrix.getMatrix();
+
+      /*   using matrix from previous declaration, route represents the possibilities of reacheble destinations from each point
+                ex: K(m1)= [a1, a2, a3, m2, m3, c1, b1, i1, e1, d1]*/
+
         Map<String, String[]> route = mp.getRoute(matrix);
 
         System.out.println("__________________________________1__________________________________");

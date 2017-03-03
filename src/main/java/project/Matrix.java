@@ -6,11 +6,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Matrix {
-    StringBuilder sb = new StringBuilder();
 
-    public String [][] getMatrix(){
+
+    public static String [][] getMatrix(){
+
         try(BufferedReader br = new BufferedReader(new InputStreamReader(Matrix.class.getResourceAsStream("/file.txt")))) {
-
+            StringBuilder sb = new StringBuilder();
             String line = br.readLine();
             String[] index = line.split("\\s+");
             String [][] matrix = new String[index.length+1][index.length+1];
@@ -95,7 +96,7 @@ public class Matrix {
 
     }
 
-    public StringBuilder sb(){
-        return this.sb;
-    }
+//    public StringBuilder sb(){
+//        return this.sb;
+//    }
 }

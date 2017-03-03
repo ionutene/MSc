@@ -7,6 +7,11 @@ import java.io.FileWriter;
 import java.io.File;
 class Subset
 {
+
+
+
+
+
     // Print all subsets of given set[]
 
     //private static final String FILENAME = "filename.txt";
@@ -22,13 +27,13 @@ class Subset
         int n = set.length;
         int count = 0;
         int countOk = 0;
-        String content = "";
+        StringBuilder content = new StringBuilder("");
         // Run a loop for printing all 2^n
         // subsets one by obe
         for (int i = 0; i < (1<<n); i++)
         {
             System.out.print(count++ +" { ");
-            content = "";
+            content.setLength(0);
             primul.clear();
             // Print current subset
             for (int j = 0; j < n; j++)
@@ -41,13 +46,13 @@ class Subset
                 if ((i & (1 << j)) > 0) {
                     System.out.print(set[j] + " ");
                     primul.add(set[j]);
-                    content += set[j]+" ";
+                    content.append(set[j]).append(" ");
                 }
 
 
 
             System.out.println("} = " + Subset.getSolveResult(primul) );
-            content = "\n"+countOk + ". { " + content.trim() + " } = 1";
+            content.append("\n").append(countOk).append(". { ").append(content).append(" } = 1").toString();
             if(Subset.getSolveResult(primul) == 1) {
                 //System.out.println(" ");
                 //System.out.println("Adica " + content);
@@ -68,7 +73,7 @@ class Subset
 
 
 
-                    bw.write(content);
+                    bw.write(String.valueOf(content));
                     countOk++;
                     bw.append("\r\n");
                     //content = "";

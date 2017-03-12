@@ -1,9 +1,8 @@
 package project;
 
-import com.sun.org.apache.xml.internal.security.keys.keyresolver.KeyResolver;
-
 import java.util.Arrays;
 import java.util.Map;
+//package com.zetcode.readopencsv;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,24 +12,27 @@ public class Main {
 
 
         // matrix gets OD data possibilities from file.txt with the static method getMatrix specific Class TransformOperations
-        String[][] matrix = TransformOperations.getMatrix();
+        //String[][] matrix = TransformOperations.getMatrix();
 
       /*   using matrix from previous declaration, route represents the possibilities of reacheble destinations from each point
                 ex: K(m1)= [a1, a2, a3, m2, m3, c1, b1, i1, e1, d1]*/
 
-        Map<String, String[]> route = TransformOperations.getRoute(matrix);
+        Map<String, String[]> route ;
+              route = TransformOperations.getRoute();
+
 
 
         //This 1st step shows us the OD matrix
 
-        System.out.println("__________________________________1__________________________________");
+       /* System.out.println("__________________________________1__________________________________");
 
         for (String[] str : matrix) {
             for (String elem : str) {
                 System.out.print(elem + "\t");
             }
             System.out.println("");
-        }
+        }*/
+
         int size = 0;
 
 
@@ -48,6 +50,7 @@ public class Main {
         // case == 1 --> save result to file
         // case == 0 --> just print specific comparison to console
         System.out.println("__________________________________3__________________________________");
+
         int i = 0;
         //System.out.println(sb);
         String[] set = new String[size];

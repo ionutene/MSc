@@ -17,6 +17,7 @@ class Subset
     //private static final String FILENAME = "filename.txt";
     static void printSubsetsVerified(String set[])
     {
+        try{
         //Solve r = new Solve();
         BufferedWriter bw = null;
         File file = new File("ParcursuriPosibile.txt");
@@ -94,6 +95,10 @@ class Subset
             }
 
         }
+    }catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("ArrayIndexOutOfBounds found in Suset");
+        }
+
     }
 
 
@@ -105,8 +110,8 @@ class Subset
 /*        TransformOperations read = new TransformOperations();
         TransformOperations mp = new TransformOperations();*/
 
-        String [][] matrix = TransformOperations.getMatrix();
-        Map <String,String[]> route = TransformOperations.getRoute(matrix);
+//        String [][] matrix = TransformOperations.getMatrix();
+        Map <String,String[]> route = TransformOperations.getRoute();
 
         ArrayList last = new ArrayList();
         for(Object a : first){

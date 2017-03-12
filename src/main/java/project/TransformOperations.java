@@ -1,135 +1,93 @@
-//comm
 package project;
+import com.opencsv.CSVReader;
 
-import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.*;
 public class TransformOperations {
 
 
-    public static String [][] getMatrix(){
-
-        try(BufferedReader br = new BufferedReader(new InputStreamReader(TransformOperations.class.getResourceAsStream("/file.txt")))) {
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            String[] index = line.split("\\s+");
-            String [][] matrix = new String[index.length+1][index.length+1];
-            /**
-             for(int i = 0; i<index.length; i++){
-             for(int j = 0; j<index.length; j++){
-             matrice[i][j]=""+i+j;
-             }
-             //System.out.println("");
-             }
-             */
-
-            if(line != null || line == "0"){
-
-                // line = br.readLine();
-                matrix[0][0] = "" + index.length + " X " + index.length;
-
-                for (int i = 1; i < index.length+1; i++) {
-                    // You may want to check for a non-word character before blindly
-                    // performing a replacement
-                    // It may also be necessary to adjust the character class
-                    index[i-1] = index[i-1].replaceAll("[^\\w]", "");
-                    matrix[0][i] = index[i-1];
-                    matrix[i][0] = matrix[0][i];
+    public static Map<String, String[]> getRoute() {
+        Map<String, String[]> route = new LinkedHashMap<>();
+        String fileName = "src/main/resources/file.txt";
+//        System.out.println("AAA");
+        try (CSVReader reader = new CSVReader(new FileReader(fileName))) {
+            List<String[]> rows = reader.readAll();
+            String[] header = new String[rows.size()];
+            for (String e : rows.get(0)) {
+//                System.out.format("%s", e);
+                header = e.split("\\W+");
+               /* for (String column:header)
+                {System.out.println("[" + column + "] ");
+                }*/
+            }
+            ArrayList<String> holdWinners = new ArrayList();
+            //            int count = 0;
+            for (int i = 1; i < rows.size(); i++) {
+                for (String e : rows.get(i)) {
+                    String[] row = e.split("\\W+");
+//                    System.out.format("Line " + i + "  \n" + "%s", e);
+                    for (int j = 0; j < row.length; j++) {
+//                        System.out.println(j + "   .");
+                        if (row[j].equals("x")) {
+                            //Add to map..to be continued
+//                           System.out.println("\n row[" + j + "]= " + row[j] + "= " + header[j] + " ");
+                            holdWinners.add(header[j]);
+                           /* markedFields[count] = row[j];
+                            System.out.println();
+                            System.out.println("marked " + markedFields[count] + " count " + count + " row[" + j + "]= " + row[j] + " " + header[j]);
+                            count++;
+                            System.out.println("______________________________" + i + "__________________________________");
+                            System.out.print("[" + row[j] + "] =  " + (j) + " ");
+                            if(j + 1 == rows.size() || count+1 == rows.size()) {
+                                route.put(header[i], markedFields);
+                                markedFields = new String[rows.size()];
+                                count = 0;*/
+                        }
+/*
+                        for (String a:holdWinners
+                             ) {System.out.print(a+" ");
+                        }
+*/
+                    }
+                    try {
+                        if (header[i - 1] != null && i < rows.size() && !header[i-1].equals(" ")) {
+                            route.put(header[i - 1], holdWinners.toArray(new String[0]));
+                            holdWinners.clear();
+                       /* for (String st : markedFields) {
+                            if(st!=null)System.out.print(st + " ");
+                        }*/
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e1) {
+//                           System.out.println("Technical issue about bounds");
+                    }
                 }
-
-                /**
-                 for(String element : index){
-                 System.out.print(element +" ");
-                 }
-                 System.out.println("");
-
-                 */
+//                    System.out.println();
             }
-            int j = 0;
+//                System.out.println();
+               /* for (String key : route.keySet()) {
+                    System.out.println(key + " --> " + route.get(key));
+                }*/
 
-            while (line != null && !line.trim().equals("")) {
-                j++;
-                sb.append(line);
-                sb.append(System.lineSeparator());
-                line = br.readLine();
-                index = line.split("\\s+");
-
-                for (int i=1; i < index.length+1; i++) {
-                    // You may want to check for a non-word character before blindly
-                    // performing a replacement
-                    // It may also be necessary to adjust the character class
-                    index[i-1] = index[i-1].replaceAll("[^\\w]", "");
-                    matrix[j][i] = index[i-1];
-                }
-                String everything = sb.toString();
-            }
-
-
-            for(int i = 1; i< index.length+1; i++){
-                System.out.println("matrice["+i+"][0]= "+ matrix[i][0]+ "<-- matrice[0]["+i+"]= "+ matrix[0][i]);
-                matrix[i][0] = matrix[0][i];
-            }
-
-
-
-
-
-
-            br.close();
-            /**
-             for(String [] str : matrice){
-             for(String elem : str){
-             System.out.print(elem+" ");
-             }
-             System.out.println("");
-             }
-             */
-
-            return matrix;
-        } catch(IOException a){
-            System.out.println("Fisierul nu a fost gasit");
-            return new String[0][0];
+        } catch (FileNotFoundException e) {
+            System.out.println("Fisierul nu a fost gasit ");
+        }finally {
+            return route;
         }
-
 
 
     }
 
-    public static Map<String,String[]> getRoute(String[][] matrix) {
+    public static void main(String[] args) throws IOException, ArrayIndexOutOfBoundsException {
+        Map<String, String[]> route = TransformOperations.getRoute();
 
-        int sum;
-        int pozition = 0;
-        String a = "" ;
-        Map <String,String[]> route = new HashMap<String,String[]>();
-
-        for(int i = 1; i<matrix.length; i++){
-            a = matrix[0][i];
-            sum = 0;
-            for(int j = 1 ; j<matrix.length; j++){
-                if(!matrix[i][j].equals("0") && !matrix[i][j].equals("1"))
-                    sum++;
-            }
-            pozition = 0;
-            String [] individualRoute = new String [sum];
-            for(int j = 1 ; j<matrix.length; j++){
-                if(!matrix[i][j].equals("0") && !matrix[i][j].equals("1")){
-                    individualRoute[pozition] = matrix[0][j];
-                    pozition++;
-                }
-            }
-            route.put(a,individualRoute);
-            // System.out.println("K("+a+")= "+Arrays.asList(parcursIndividual));
+        for (String key : route.keySet()) {
+            System.out.println(key + " --> " + Arrays.deepToString(route.get(key)));
         }
 
-        return route;
 
     }
-
-
-//    public StringBuilder sb(){
-//        return this.sb;
-//    }
 }
+
+

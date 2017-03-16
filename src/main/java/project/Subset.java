@@ -24,7 +24,7 @@ class Subset
 
 
         //FileWriter fw = null;
-        ArrayList primul = new ArrayList();
+        ArrayList first = new ArrayList();
         int n = set.length;
         int count = 0;
         int countOk = 0;
@@ -35,7 +35,7 @@ class Subset
         {
             System.out.print(count++ +" { ");
             content.setLength(0);
-            primul.clear();
+            first.clear();
             // Print current subset
             for (int j = 0; j < n; j++)
 
@@ -46,15 +46,25 @@ class Subset
                 // are not
                 if ((i & (1 << j)) > 0) {
                     System.out.print(set[j] + " ");
-                    primul.add(set[j]);
+
+//                    Optimization required!!!!!!!!!!!!!!!!!!!!!!!
+                   /* if(isDeadEnd(first.add(set[j]))){
+                        System.out.print(set[j] + " ");
+                        first.add(set[j]);
+                        content.append(set[j]).append(" ");
+                    } else j++;*/
+
+
+
+                    first.add(set[j]);
                     content.append(set[j]).append(" ");
                 }
 
 
 
-            System.out.println("} = " + Subset.getSolveResult(primul) );
+            System.out.println("} = " + Subset.getSolveResult(first) );
             content.append("\n").append(countOk).append(". { ").append(content).append(" } = 1").toString();
-            if(Subset.getSolveResult(primul) == 1) {
+            if(Subset.getSolveResult(first) == 1) {
                 //System.out.println(" ");
                 //System.out.println("Adica " + content);
                 //System.out.println(" ");
@@ -101,7 +111,11 @@ class Subset
 
     }
 
+    public static boolean isDeadEnd(ArrayList first){
 
+    return Subset.getSolveResult(first) == 1 ? true :false;
+
+    }
 
 
     public static int getSolveResult(ArrayList first){

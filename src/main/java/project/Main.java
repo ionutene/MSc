@@ -1,11 +1,18 @@
 package project;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Map;
 //package com.zetcode.readopencsv;
 
 public class Main {
+    public static long startTime = System.currentTimeMillis();
+
     public static void main(String[] args) {
+
+//        static long startTime = System.currentTimeMillis();
+
+
         /*TransformOperations read = new TransformOperations();
         TransformOperations mp = new TransformOperations();
         StringBuilder sb = TransformOperations.sb();*/
@@ -63,6 +70,9 @@ public class Main {
 
         System.out.println("__________________________________Final______________________________");
 
+        long elapsedTime = 0L;
+        elapsedTime = (new Date()).getTime() - startTime;
+    System.out.println("Operation proceded in " + elapsedTime/1000 + " seconds");
 
     }
 

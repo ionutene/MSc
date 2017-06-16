@@ -39,7 +39,6 @@ public class TransformOperations {
 
                         }
                     } catch (ArrayIndexOutOfBoundsException e1) {
-                           System.out.println("Technical issue about bounds");
                     }
                 }
             }
@@ -54,6 +53,16 @@ public class TransformOperations {
 
     }
 
+
+
+    public static List<String[]> getResults() throws IOException {
+//        List<String[]> returned = new LinkedList<>();
+
+        CSVReader reader = new CSVReader(new FileReader("ParcursuriPosibile.txt"));
+	    List<String[]> myEntries = reader.readAll();
+        return myEntries;
+    }
+
     public static void main(String[] args) throws IOException, ArrayIndexOutOfBoundsException {
         Map<String, String[]> route = TransformOperations.getRoute();
 
@@ -64,5 +73,3 @@ public class TransformOperations {
 
     }
 }
-
-

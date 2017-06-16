@@ -1,6 +1,8 @@
 package project;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 //package com.zetcode.readopencsv;
 
@@ -17,15 +19,14 @@ public class Main {
       /*   using matrix from previous declaration, route represents the possibilities of reacheble destinations from each point
                 ex: K(m1)= [a1, a2, a3, m2, m3, c1, b1, i1, e1, d1]*/
 
-        Map<String, String[]> route ;
-              route = TransformOperations.getRoute();
+        Map<String, String[]> route;
+        route = TransformOperations.getRoute();
 
 
 
         //This 1st step shows us the OD matrix
 
        /* System.out.println("__________________________________1__________________________________");
-
         for (String[] str : matrix) {
             for (String elem : str) {
                 System.out.print(elem + "\t");
@@ -50,6 +51,7 @@ public class Main {
         // case == 1 --> save result to file
         // case == 0 --> just print specific comparison to console
         System.out.println("__________________________________3__________________________________");
+/*
 
         int i = 0;
         //System.out.println(sb);
@@ -60,12 +62,26 @@ public class Main {
         }
         Subset m = new Subset();
         m.printSubsetsVerified(set);
+*/
 
         System.out.println("__________________________________Final______________________________");
 
+	    try {
+		    List<String[]> list = TransformOperations.getResults();
+
+		    for(int i=0;i<list.size();i++){
+			    for (String a2: list.get(i)) {
+				    System.out.println(a2);
+			    }
+
+		    }
+		    System.out.println();
+
+	    } catch (IOException e) {
+		    e.printStackTrace();
+	    }
+
+
 
     }
-
-
-
 }

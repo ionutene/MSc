@@ -23,7 +23,6 @@ public class Main {
         route = TransformOperations.getRoute();
 
 
-
         //This 1st step shows us the OD matrix
 
        /* System.out.println("__________________________________1__________________________________");
@@ -35,7 +34,6 @@ public class Main {
         }*/
 
         int size = 0;
-
 
 
         //This 2nd step shows us the possibilities of reacheble destinations from each point
@@ -51,7 +49,7 @@ public class Main {
         // case == 1 --> save result to file
         // case == 0 --> just print specific comparison to console
         System.out.println("__________________________________3__________________________________");
-/*
+
 
         int i = 0;
         //System.out.println(sb);
@@ -62,25 +60,24 @@ public class Main {
         }
         Subset m = new Subset();
         m.printSubsetsVerified(set);
-*/
+
 
         System.out.println("__________________________________Final______________________________");
 
-	    try {
-		    List<String[]> list = TransformOperations.getResults();
+        try {
+            List<String[]> list = TransformOperations.getResults();
 
-		    for(int i=0;i<list.size();i++){
-			    for (String a2: list.get(i)) {
-				    System.out.println(a2);
-			    }
+            for (i = 0; i < list.size(); i++) {
+                for (String a2 : list.get(i)) {
+                    System.out.println(a2);
+                }
 
-		    }
-		    System.out.println();
+            }
+            System.out.println();
 
-	    } catch (IOException e) {
-		    e.printStackTrace();
-	    }
-
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }

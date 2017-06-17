@@ -57,13 +57,13 @@ class Subset
 
 
                         first.add(set[j]);
-                        content.append(set[j]).append(" ");
+                        content.append(set[j]).append(",");
                     }
 
 
 
                 System.out.println("} = " + Subset.getSolveResult(first) );
-                content.append("\n").append(countOk).append(". { ").append(content).append(" } = 1").toString();
+//                content.append("\n").append(countOk).append(". { ").append(content).append(" } = 1").toString();
                 if(Subset.getSolveResult(first) == 1) {
                     //System.out.println(" ");
                     //System.out.println("Adica " + content);

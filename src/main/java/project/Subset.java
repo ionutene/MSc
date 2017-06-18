@@ -1,23 +1,21 @@
 //comm
 package project;// A Java program to print all subsets of a set
-import java.util.*;
-import java.io.IOException;
+
 import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.File;
-class Subset
-{
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
 
-
-
+class Subset {
 
 
     // Print all subsets of given set[]
 
     //private static final String FILENAME = "filename.txt";
-    static void printSubsetsVerified(String set[])
-    {
-        try{
+    static void printSubsetsVerified(String set[]) {
+        try {
             //Solve r = new Solve();
             BufferedWriter bw = null;
             File file = new File("ParcursuriPosibile.txt");
@@ -31,9 +29,8 @@ class Subset
             StringBuilder content = new StringBuilder("");
             // Run a loop for printing all 2^n
             // subsets one by obe
-            for (int i = 0; i < (1<<n); i++)
-            {
-                System.out.print(count++ +" { ");
+            for (int i = 0; i < (1 << n); i++) {
+                System.out.print(count++ + " { ");
                 content.setLength(0);
                 first.clear();
                 // Print current subset
@@ -54,17 +51,14 @@ class Subset
                         content.append(set[j]).append(" ");
                     } else j++;*/
 
-
-
                         first.add(set[j]);
                         content.append(set[j]).append(",");
                     }
 
 
-
-                System.out.println("} = " + Subset.getSolveResult(first) );
+                System.out.println("} = " + Subset.getSolveResult(first));
 //                content.append("\n").append(countOk).append(". { ").append(content).append(" } = 1").toString();
-                if(Subset.getSolveResult(first) == 1) {
+                if (Subset.getSolveResult(first) == 1) {
                     //System.out.println(" ");
                     //System.out.println("Adica " + content);
                     //System.out.println(" ");
@@ -82,8 +76,6 @@ class Subset
                         }
 
 
-
-
                         bw.write(String.valueOf(content));
                         countOk++;
                         bw.append("\r\n");
@@ -92,57 +84,56 @@ class Subset
 
                     } catch (IOException ioe) {
                         ioe.printStackTrace();
-                    }
-                    finally
-                    {
-                        try{
-                            if(bw!=null)
+                    } finally {
+                        try {
+                            if (bw != null)
                                 bw.close();
-                        }catch(Exception ex){
-                            System.out.println("We found troubles in writing to file"+ex);
+                        } catch (Exception ex) {
+                            System.out.println("We found troubles in writing to file" + ex);
                         }
                     }
                 }
 
             }
-        }catch (ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("ArrayIndexOutOfBounds found in Suset");
         }
 
     }
 
-    public static boolean isDeadEnd(ArrayList first){
+    public static boolean isDeadEnd(ArrayList first) {
 
-        return Subset.getSolveResult(first) == 1 ? true :false;
+        return Subset.getSolveResult(first) == 1 ? true : false;
 
     }
 
 
-    public static int getSolveResult(ArrayList first){
+    public static int getSolveResult(ArrayList first) {
 
 
 /*        TransformOperations read = new TransformOperations();
         TransformOperations mp = new TransformOperations();*/
 
         //        String [][] matrix = TransformOperations.getMatrix();
-        Map <String,String[]> route = TransformOperations.getRoute();
+        Map<String, String[]> route = TransformOperations.getRoute();
 
         ArrayList last = new ArrayList();
-        for(Object a : first){
+        for (Object a : first) {
             //Arrays.toString(Object[] a)
-            for( String b :route.get(a) ){
+            for (String b : route.get(a)) {
                 last.add(b);
             }
         }
 
 
-        for(Object a : first){
+        for (Object a : first) {
             //Arrays.toString(Object[] a)
 
-            if(last.contains(a)){
+            if (last.contains(a)) {
 
                 //System.out.println( a + "-------este continut ------" );
-                return 0;}
+                return 0;
+            }
 
         }
 

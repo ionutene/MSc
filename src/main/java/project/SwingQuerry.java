@@ -17,6 +17,7 @@ public class SwingQuerry extends Frame implements ActionListener {
     JButton b;
 
     SwingQuerry() {
+        //example of valid input a1,b2
         tf1 = new JTextField();
         tf1.setBounds(100, 150, 150, 20);
         l = new JLabel();

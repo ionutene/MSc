@@ -1,4 +1,4 @@
-package project;
+package project.getSearchedPaths;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,7 +43,7 @@ public class SwingQuerry extends Frame implements ActionListener {
     public static void main(String[] args)
 
     {
-        new project.SwingQuerry();
+        new SwingQuerry();
 
     }
 

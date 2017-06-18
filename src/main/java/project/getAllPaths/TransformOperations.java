@@ -1,4 +1,4 @@
-package project;
+package project.getAllPaths;
 import com.opencsv.CSVReader;
 
 import java.io.FileNotFoundException;
@@ -10,21 +10,21 @@ public class TransformOperations {
 
     public static Map<String, String[]> getRoute() {
         Map<String, String[]> route = new LinkedHashMap<>();
-        String fileName = "src/main/resources/file.txt";
+        String fileName = "src/main/resources/file0.txt";
 
         try (CSVReader reader = new CSVReader(new FileReader(fileName))) {
             List<String[]> rows = reader.readAll();
             String[] header = new String[rows.size()];
             for (String e : rows.get(0)) {
 
-                header = e.split("\\W+");
+                header = e.split("\\t");
 
             }
             ArrayList<String> holdWinners = new ArrayList();
 
             for (int i = 1; i < rows.size(); i++) {
                 for (String e : rows.get(i)) {
-                    String[] row = e.split("\\W+");
+                    String[] row = e.split("\\t");
 
                     for (int j = 0; j < row.length; j++) {
                         if (row[j].equals("x")) {

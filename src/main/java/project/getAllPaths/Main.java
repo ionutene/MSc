@@ -1,4 +1,4 @@
-package project;
+package project.getAllPaths;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -64,7 +64,7 @@ public class Main {
 
         System.out.println("__________________________________Final______________________________");
 
-        try {
+        /*try {
             List<String[]> list = TransformOperations.getResults();
 
             for (i = 0; i < list.size(); i++) {
@@ -78,7 +78,7 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+*/
 
     }
 }

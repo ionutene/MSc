@@ -1,5 +1,5 @@
 //comm
-package project;// A Java program to print all subsets of a set
+package project.getAllPaths;// A Java program to print all subsets of a set
 
 import java.io.BufferedWriter;
 import java.io.File;

@@ -1,4 +1,4 @@
-package project;
+package project.getSearchedPaths;
 
 import java.io.FileReader;
 import java.util.Arrays;

@@ -1,11 +1,10 @@
 package project.getSearchedPaths;
 
+import au.com.bytecode.opencsv.CSVReader;
+
 import java.io.FileReader;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
-
-import au.com.bytecode.opencsv.CSVReader;
 
 public class ParseCSVLineByLine
 {

@@ -15,7 +15,7 @@ public class Main1 extends Frame implements ActionListener {
 	JLabel l;
 	JButton b;
 
-	Main1() {
+	public Main1() {
 		tf1 = new JTextField();
 		tf2 = new JTextField();
 		tf1.setBounds(75, 200, 50, 20);

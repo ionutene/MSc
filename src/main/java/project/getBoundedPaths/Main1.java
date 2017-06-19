@@ -9,88 +9,75 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
+
 public class Main1 extends Frame implements ActionListener {
-	JTextField tf1;
-	JTextField tf2;
-	JLabel l;
-	JButton b;
+    JTextField limitField1;
+    JTextField limitField2;
+    JLabel label;
+    JButton buttonSubmit;
 
-	public Main1() {
-		tf1 = new JTextField();
-		tf2 = new JTextField();
-		tf1.setBounds(75, 200, 50, 20);
-		tf2.setBounds(200, 200, 50, 20);
-		l = new JLabel();
-		l.setBounds(50, 100, 250, 20);
-		b = new JButton("Gaseste parcursurile intre");
-		b.setBounds(50, 100, 250, 30);
-		b.addActionListener(this);
-		add(b);
-		add(tf1);
-		add(tf2);
-		add(l);
-		setSize(400, 400);
-		setLayout(null);
-		setVisible(true);
-	}
+    public Main1() {
+        limitField1 = new JTextField();
+        limitField2 = new JTextField();
+        limitField1.setBounds(75, 200, 50, 20);
+        limitField2.setBounds(200, 200, 50, 20);
+        label = new JLabel();
+        label.setBounds(50, 100, 250, 20);
+        buttonSubmit = new JButton("Gaseste parcursurile intre");
+        buttonSubmit.setBounds(50, 100, 250, 30);
+        buttonSubmit.addActionListener(this);
+        add(buttonSubmit);
+        add(limitField1);
+        add(limitField2);
+        add(label);
+        setSize(400, 400);
+        setLayout(null);
+        setVisible(true);
+    }
 
-	public static void main(String[] args)
+    public static void main(String[] args){
+        new Main1();
+    }
 
-	{
-		new Main1();
-
-	}
-
-	public void actionPerformed(ActionEvent e) {
-		try {
-			int from = Integer.parseInt(tf1.getText());
-			int to = Integer.parseInt(tf2.getText());
-			try {
-				long now = System.currentTimeMillis();
-				Map<String, Set<String>> formulas = CSVParser.readCSV();
-				Combinations combinations = new Combinations(formulas.keySet());
-				combinations.doAllNonRepetitiveCombinationsBetweenIndices(from, to);
-				RouteVerification routeVerification = new RouteVerification(combinations.getFinalElements(), formulas);
-				ArrayList<String> returnValue = routeVerification.doRouteVerifications();
-
-
-
-				JFrame f = new JFrame();
-
-				DefaultListModel<String> l1 = new DefaultListModel<>();
-				for (String a : returnValue) {
-					l1.addElement(a);
-				}
-				JList<String> list = new JList<>(l1);
-				JScrollPane scrollBar1 = new JScrollPane();
-
-
-				list.setBounds(100, 100, 75, 175);
-				scrollBar1.setBounds(75, 100, 225, 175);
-				scrollBar1.setViewportView(list);
-				f.add(scrollBar1);
-				f.setSize(400, 400);
-				f.setLayout(null);
-				f.setVisible(true);
-				f.setResizable(true);
-
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // EDIT
-
-
-				JLabel label = new JLabel();
-				label.setBounds(150, 300, 75, 75);
-				label.setSize(500, 100);
-				String data = "Totul a durat: " + (System.currentTimeMillis() - now) + " ms";
-				label.setText(data);
-				f.add(label);
-
-				System.out.println();
-
-			} catch (IOException a) {
-				a.printStackTrace();
-			}
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
-	}
+    public void actionPerformed(ActionEvent e) {
+        try {
+            int fromLowerValue = Integer.parseInt(limitField1.getText());
+            int toMaximiumValue = Integer.parseInt(limitField2.getText());
+            try {
+                long now = System.currentTimeMillis();
+                Map<String, Set<String>> formulas = CSVParser.readCSV();
+                Combinations combinations = new Combinations(formulas.keySet());
+                combinations.doAllNonRepetitiveCombinationsBetweenIndices(fromLowerValue, toMaximiumValue);
+                RouteVerification routeVerification = new RouteVerification(combinations.getFinalElements(), formulas);
+                ArrayList<String> returnValue = routeVerification.doRouteVerifications();
+                JFrame frame = new JFrame();
+                DefaultListModel<String> listReturned = new DefaultListModel<>();
+                for (String a : returnValue) {
+                    listReturned.addElement(a);
+                }
+                JList<String> list = new JList<>(listReturned);
+                JScrollPane scrollBar1 = new JScrollPane();
+                list.setBounds(100, 100, 75, 175);
+                scrollBar1.setBounds(75, 100, 225, 175);
+                scrollBar1.setViewportView(list);
+                frame.add(scrollBar1);
+                frame.setSize(400, 400);
+                frame.setLayout(null);
+                frame.setVisible(true);
+                frame.setResizable(true);
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                JLabel label = new JLabel();
+                label.setBounds(150, 300, 75, 75);
+                label.setSize(500, 100);
+                String data = "Totul a durat: " + (System.currentTimeMillis() - now) + " ms";
+                label.setText(data);
+                frame.add(label);
+                System.out.println();
+            } catch (IOException a) {
+                a.printStackTrace();
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
 }

@@ -3,7 +3,6 @@ package project.getBoundedPaths;
 import java.util.*;
 
 public class RouteVerification {
-
 	private Set<Set<String>> finalCombinations;
 	private Map<String, Set<String>> routePossibilities;
 	private static int index = 1;
@@ -23,16 +22,11 @@ public class RouteVerification {
 			}
 			Set<String> containerSetClone = new LinkedHashSet<>(containerSet);
 			containerSetClone.retainAll(combinationClone);
-//            System.out.println("=================================================");
 			if (containerSetClone.size() == 0) {
 				System.out.println(index++ + ". "+combination + " is possible!");
 			returnValue.add(combination.toString());
 			} else {
-			   /* System.out.println("Combinations: " + combination);
-                System.out.println("Possibilities: " + containerSet);
-                System.out.println("Resulting intersection: " + containerSetClone);*/
 			}
-//            System.out.println("=================================================");
 		}
 		return returnValue;
 	}

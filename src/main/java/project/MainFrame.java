@@ -29,6 +29,7 @@ public class MainFrame extends JFrame {
         add(option3);
         add(option4);
         setSize(400, 400);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         option1.addActionListener(new ActionListener() {
             @Override

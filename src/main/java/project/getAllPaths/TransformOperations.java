@@ -1,6 +1,7 @@
 package project.getAllPaths;
 import com.opencsv.CSVReader;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,8 +11,10 @@ public class TransformOperations {
 
     public static Map<String, String[]> getRoute() {
         Map<String, String[]> route = new LinkedHashMap<>();
-        String fileName = "src/main/resources/file0.txt";
+        String fileName;
 
+        File realmID = new File(TransformOperations.class.getClassLoader().getResource("file0.txt").getFile().toString());
+        fileName = realmID.toString();
         try (CSVReader reader = new CSVReader(new FileReader(fileName))) {
             List<String[]> rows = reader.readAll();
             String[] header = new String[rows.size()];

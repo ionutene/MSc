@@ -8,12 +8,13 @@ import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 
-public class SwingQuerry extends Frame implements ActionListener {
+public class SwingQuerry extends JFrame implements ActionListener {
     JTextField inputField;
     JLabel label;
     JButton submitButton;
 
     public SwingQuerry() {
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         //example of valid input a1,b2
         inputField = new JTextField();
         inputField.setBounds(100, 150, 150, 20);

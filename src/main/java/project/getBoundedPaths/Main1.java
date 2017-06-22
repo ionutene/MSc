@@ -10,13 +10,14 @@ import java.util.Map;
 import java.util.Set;
 
 
-public class Main1 extends Frame implements ActionListener {
+public class Main1 extends JFrame implements ActionListener {
     JTextField limitField1;
     JTextField limitField2;
     JLabel label;
     JButton buttonSubmit;
 
     public Main1() {
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         limitField1 = new JTextField();
         limitField2 = new JTextField();
         limitField1.setBounds(75, 200, 50, 20);

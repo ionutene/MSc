@@ -21,7 +21,8 @@ public class Main extends JFrame {
                 ex: K(m1)= [a1, a2, a3, m2, m3, c1, b1, i1, e1, d1]*/
 
 		Map<String, String[]> route;
-		route = TransformOperations.getRoute();
+		TransformOperations transform = new TransformOperations();
+		route = transform.getRoute();
 
 
 		//This 1st step shows us the OD matrix
